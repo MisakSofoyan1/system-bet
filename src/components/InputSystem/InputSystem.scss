@@ -74,3 +74,20 @@
     padding: 8px 16px;
     align-items: center;
 }
+
+.error-message-banner {
+  background: rgba(255, 0, 0, 0.15);
+  border-left: 4px solid #ff0000;
+  color: #ff0000;
+  padding: 10px;
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.odds-row.invalid-input {
+  border: 1px solid #ff0000;
+  background: rgba(255, 0, 0, 0.05);
+}

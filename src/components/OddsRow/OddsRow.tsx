@@ -7,6 +7,7 @@ interface OddsRowProps {
   status: string;
   onOddChange: (index: number, newValue: string) => void;
   onStatusChange: (index: number, newStatus: string) => void;
+  isInvalid?: boolean;
 }
 
 const OddsRow: React.FC<OddsRowProps> = ({
@@ -15,6 +16,7 @@ const OddsRow: React.FC<OddsRowProps> = ({
   status,
   onOddChange,
   onStatusChange,
+  isInvalid,
 }) => {
   const handleInputChange = (e: { target: { value: string } }) => {
     const val = e.target.value.replace(",", ".");
@@ -35,7 +37,7 @@ const OddsRow: React.FC<OddsRowProps> = ({
   };
 
   return (
-    <div className="odds-row">
+    <div className={`odds-row ${isInvalid ? "invalid-input" : ""}`}>
       <label className="w-50">Odds {index + 1}</label>
 
       <input
@@ -51,22 +53,22 @@ const OddsRow: React.FC<OddsRowProps> = ({
         <input
           type="radio"
           name={`status-${index}`}
-          checked={status === "correct"}
-          onChange={() => onStatusChange(index, "correct")}
+          checked={status === "win"}
+          onChange={() => onStatusChange(index, "win")}
           className="radio radio-win"
         />
         <input
           type="radio"
           name={`status-${index}`}
-          checked={status === "incorrect"}
-          onChange={() => onStatusChange(index, "incorrect")}
+          checked={status === "lost"}
+          onChange={() => onStatusChange(index, "lost")}
           className="radio radio-lost"
         />
         <input
           type="radio"
           name={`status-${index}`}
-          checked={status === "void"}
-          onChange={() => onStatusChange(index, "void")}
+          checked={status === "return"}
+          onChange={() => onStatusChange(index, "return")}
           className="radio radio-return"
         />
       </div>

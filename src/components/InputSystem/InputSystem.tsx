@@ -9,22 +9,41 @@ export interface IOdds {
 }
 
 interface IInputSystemProps {
-  combinations: number;
+  total: number;
   handleCompute: (odds: IOdds[], totalStake: string) => void;
 }
 
-const InputSystem: React.FC<IInputSystemProps> = ({
-  combinations,
-  handleCompute,
-}) => {
+const InputSystem: React.FC<IInputSystemProps> = ({ total, handleCompute }) => {
   const [totalStake, setTotalStake] = useState("100.00");
   const [odds, setOdds] = useState<IOdds[]>(() =>
-    Array.from({ length: combinations }, () => ({
+    Array.from({ length: total }, () => ({
       value: "2.00",
-      status: "correct",
+      status: "win",
     })),
   );
+  const [error, setError] = useState<string | null>(null);
 
+  const onComputeClick = () => {
+    setError(null);
+
+    const numericStake = parseFloat(totalStake);
+    if (isNaN(numericStake) || numericStake <= 0) {
+      setError("Stake must be greater than 0");
+      return;
+    }
+
+    const hasInvalidOdd = odds.some((o) => {
+      const val = parseFloat(o.value);
+      return isNaN(val) || val < 1;
+    });
+
+    if (hasInvalidOdd) {
+      setError("All odds must be 1.00 or higher");
+      return;
+    }
+
+    handleCompute(odds, totalStake);
+  };
   const updateOddValue = useCallback((index: number, newValue: string) => {
     setOdds((prev) =>
       prev.map((item, i) =>
@@ -60,6 +79,7 @@ const InputSystem: React.FC<IInputSystemProps> = ({
   };
   return (
     <div className="input-system-wrapper">
+      {error && <div className="error-message-banner">{error}</div>}
       <div className="header-row">
         <label className="w-50">Total Stake</label>
         <input
@@ -87,12 +107,10 @@ const InputSystem: React.FC<IInputSystemProps> = ({
           status={odd.status}
           onOddChange={updateOddValue}
           onStatusChange={updateStatus}
+          isInvalid={parseFloat(odd.value) < 1}
         />
       ))}
-      <button
-        className="compute-btn"
-        onClick={() => handleCompute(odds, totalStake)}
-      >
+      <button className="compute-btn" onClick={onComputeClick}>
         Compute
       </button>
     </div>

@@ -13,4 +13,8 @@ main {
 .main-section {
   display: flex;
   gap: 16px;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 }
