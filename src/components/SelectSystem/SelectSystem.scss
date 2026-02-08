@@ -33,4 +33,17 @@
   }
 }
 
+.select-system__select::-webkit-scrollbar {
+  width: 6px;
+}
+
+.select-system__select::-webkit-scrollbar-track {
+  background: #1b1b1b;
+  border-radius: 4px;
+}
+
+.select-system__select::-webkit-scrollbar-thumb {
+  background-color: #4caf4fa9;
+  border-radius: 4px;
+}
 
