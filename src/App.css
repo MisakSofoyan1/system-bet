@@ -6,6 +6,11 @@ main {
 }
 
 .header {
-  color: #409A1a;
+  color: #409a1a;
   font-size: 16px;
+}
+
+.main-section {
+  display: flex;
+  gap: 16px;
 }

@@ -1,3 +1,10 @@
+.select-system-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 300px;
+}
+
 .system-box {
   padding: 10px;
   font-size: 12px;
@@ -25,6 +32,7 @@
       1px 1px 1px #ffffff4d inset,
       1px 1px 1px #000;
     cursor: pointer;
+    margin: 0 auto;
 
     &:hover {
       background: #222;
@@ -48,8 +56,4 @@
 .select-system__select::-webkit-scrollbar-thumb {
   background-color: #4caf4fa9;
   border-radius: 4px;
-}
-
-.select-system__description {
-  margin-top: 16px;
 }

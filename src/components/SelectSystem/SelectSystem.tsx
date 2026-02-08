@@ -1,29 +1,28 @@
 import type React from "react";
-import { combinationsCount, getSystemOptions } from "../../utils/helpers";
+import { getSystemOptions } from "../../utils/helpers";
 import { SELECTION_COUNT } from "../../utils/constants";
 
 import "./SelectSystem.scss";
-import { useMemo } from "react";
 
 const SYSTEM_OPTIONS = getSystemOptions(SELECTION_COUNT);
 
 interface ISelectSystemProps {
   value: string;
   setValue: (value: string) => void;
+  picks: number;
+  total: number;
+  combinations: number;
 }
 
-const SelectSystem: React.FC<ISelectSystemProps> = ({ value, setValue }) => {
-  const { picks, total, combinations } = useMemo(() => {
-    const [p, t] = value.split("_").map(Number);
-    return {
-      picks: p,
-      total: t,
-      combinations: combinationsCount(t, p),
-    };
-  }, [value]);
-
+const SelectSystem: React.FC<ISelectSystemProps> = ({
+  value,
+  setValue,
+  picks,
+  total,
+  combinations,
+}) => {
   return (
-    <>
+    <div className="select-system-wrapper">
       <div className="system-box select-system">
         <label className="select-system__label">System</label>
         <select
@@ -41,7 +40,7 @@ const SelectSystem: React.FC<ISelectSystemProps> = ({ value, setValue }) => {
       <div className="system-box select-system__description">
         A system {picks} from {total} contains {combinations} combinations.
       </div>
-    </>
+    </div>
   );
 };
 

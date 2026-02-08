@@ -1,0 +1,50 @@
+.odds-row {
+  display: flex;
+  padding: 8px 16px;
+  align-items: center;
+}
+
+.radio-group {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .radio {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #121212;
+    border: 1px solid #333;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: inset 1px 1px 3px #00000080;
+    margin: 0;
+
+    &:checked {
+      &.radio-win {
+        background: #409A1A;
+        border-color: #55c425;
+        box-shadow: 0 0 8px #409A1A, inset 0 0 4px #ffffff80;
+      }
+
+      &.radio-lost {
+        background: #ff4444;
+        border-color: #ff6666;
+        box-shadow: 0 0 8px #ff4444, inset 0 0 4px rgba(255,255,255,0.5);
+      }
+
+      &.radio-return {
+        background: #ffeb3b;
+        border-color: #fff176;
+        box-shadow: 0 0 8px #ffeb3b, inset 0 0 4px rgba(0,0,0,0.2);
+      }
+    }
+
+  }
+}
